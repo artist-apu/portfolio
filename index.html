@@ -1,0 +1,556 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Rifa Nanziba - Visual Artist Portfolio</title>
+
+  <!-- Google Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  
+  <!-- AOS (Animate On Scroll) CSS for animations -->
+  <link href="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.css" rel="stylesheet">
+
+  <!-- Custom CSS for Portfolio -->
+  <style>
+    /* General Styles */
+    body {
+      font-family: 'Poppins', sans-serif;
+      margin: 0;
+      padding: 0;
+      background-color: #fafafa;
+      color: #333;
+      scroll-behavior: smooth; /* Smooth scrolling */
+    }
+
+    a {
+      text-decoration: none;
+      color: inherit;
+    }
+
+    /* Header */
+    header {
+      background-color: #f44e37;
+      color: white;
+      padding: 5px 0;
+      text-align: center;
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+      transition: all 0.3s ease-in-out;
+    }
+
+    header h1 {
+      font-size: 2.5rem;
+      margin: 0;
+    }
+
+    /* Sticky Menu Bar */
+    nav {
+      display: flex;
+      justify-content: center;
+      gap: 20px;
+      padding: 10px 0;
+      background-color: rgba(0, 0, 0, 0.5);
+      position: fixed;
+      top: 0;
+      width: 100%;
+      z-index: 100;
+      transition: 0.3s;
+    }
+
+    nav a {
+      font-size: 1.2rem;
+      color: white;
+      font-weight: 600;
+      padding: 10px 15px;
+      transition: 0.3s;
+    }
+
+    nav a:hover {
+      background-color: #ff7a18;
+      border-radius: 5px;
+    }
+
+    /* Navigation Links */
+    nav ul {
+      list-style: none;
+      padding: 0;
+      display: flex;
+    }
+
+    nav ul li {
+      display: inline;
+    }
+
+    /* Introduction Section */
+    #introduction {
+      background-color: white;
+      padding: 50px 20px;
+      text-align: center;
+      max-width: 1000px;
+      margin: 40px auto;
+      border-radius: 8px;
+    }
+
+    #introduction h2 {
+      font-size: 2.5rem;
+      margin-bottom: 20px;
+    }
+
+    #introduction p {
+      font-size: 1.2rem;
+      line-height: 1.8;
+      max-width: 900px;
+      margin: 0 auto;
+    }
+
+    /* Add a photo section in the introduction */
+    #introduction img {
+      width: 150px;
+      height: 150px;
+      object-fit: cover;
+      border-radius: 50%;
+      margin-bottom: 20px;
+    }
+
+    /* Artwork Section */
+    #artworks {
+      padding: 50px 20px;
+      background-color: #fff;
+      text-align: center;
+    }
+
+    #artworks h2 {
+      font-size: 2.5rem;
+      margin-bottom: 20px;
+    }
+
+    .artwork-gallery {
+      display: flex;
+      justify-content: center;
+      gap: 20px;
+      flex-wrap: wrap;
+      transition: all 0.3s ease;
+    }
+
+    .artwork {
+      width: 400px; /* Increased image size */
+      height: 400px; /* Increased image size */
+      background-color: #f4f4f4;
+      border-radius: 10px;
+      margin-bottom: 30px;
+      padding: 20px;
+      box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+      transition: transform 0.3s ease;
+      position: relative;
+      overflow: hidden; /* Hide overflow from description */
+      border: 1px solid #ddd; /* Thin, minimal border */
+    }
+
+    .artwork img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      border-radius: 8px;
+      transition: opacity 0.3s ease;
+    }
+
+    .artwork-description {
+      font-size: 1rem;
+      color: #333;
+      position: absolute;
+      bottom: 10px;
+      left: 20px;
+      right: 20px;
+      padding: 10px;
+      background-color: rgba(255, 255, 255, 0.7);
+      border-radius: 5px;
+      opacity: 0; /* Initially hidden */
+      transition: opacity 0.3s ease;
+    }
+
+    .artwork:hover .artwork-description {
+      opacity: 1; /* Show description on hover */
+    }
+
+    .artwork:hover {
+      transform: scale(1.05);
+    }
+
+    /* Contact Section */
+    #contact {
+      padding: 50px 20px;
+      background-color: #db4f3c; /* Adjusted to match the color theme */
+      color: white;
+      text-align: center;
+    }
+
+    #contact h2 {
+      font-size: 2.5rem;
+      margin-bottom: 20px;
+    }
+
+    #contact p {
+      font-size: 1.2rem;
+      margin: 5px 0;
+    }
+
+    #contact a {
+      color: white;
+      text-decoration: underline;
+    }
+
+    /* Footer */
+    footer {
+      background-color: #222;
+      color: white;
+      text-align: center;
+      padding: 5px 0;
+    }
+
+    footer p {
+      font-size: 1rem;
+      margin: 0;
+    }
+
+    /* Media Queries */
+    @media (max-width: 768px) {
+      .artwork-gallery {
+        flex-direction: column;
+        align-items: center;
+      }
+
+      .artwork {
+        width: 80%;
+      }
+    }
+
+    /* Scroll Down Popup (Floating Button) */
+    #scroll-down-popup {
+      position: fixed;
+      bottom: 20px;
+      right: 20px;
+      background-color: #ffffff; /* Soft background */
+      color: whitesmoke; /* Accent color to match theme */
+      padding: 5px 6px;
+      border-radius: 50%;
+      font-size: 2rem;
+      font-family: 'Poppins', sans-serif;
+      cursor: pointer;
+      z-index: 1000;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+      transition: transform 0.3s ease, box-shadow 0.3s ease, background-color 0.3s ease;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      width: 50px;
+      height: 50px;
+      background: linear-gradient(135deg, #ff7a18, #f44e37); /* Subtle gradient */
+      border: 2px solid #f44e37; /* Light border to highlight */
+    }
+
+    #scroll-down-popup:hover {
+      transform: scale(1.1);
+      background-color: #f44e37;
+      box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
+    }
+
+    #scroll-down-popup:active {
+      transform: scale(0.95);
+      background-color: #ff7a18;
+    }
+
+    #scroll-down-popup:before {
+      content: '↓';
+      font-size: 2rem;
+      animation: pulse 1.5s ease-in-out infinite;
+    }
+
+    @keyframes pulse {
+      0% {
+        transform: scale(1);
+        opacity: 0.7;
+      }
+      50% {
+        transform: scale(1.2);
+        opacity: 1;
+      }
+      100% {
+        transform: scale(1);
+        opacity: 0.7;
+      }
+    }
+
+  </style>
+</head>
+<body>
+
+  <!-- Sticky Navigation Menu -->
+  <nav>
+    <ul>
+      <li><a href="#introduction">About Me</a></li>
+      <li><a href="#artworks">My Work</a></li>
+      <li><a href="#contact">Contact</a></li>
+    </ul>
+  </nav>
+
+  <!-- Header Navigation -->
+  <header>
+    <h2>Rifa Nanziba - Visual Artist Portfolio</h2>
+  </header>
+
+  <!-- Introduction Section with Image -->
+  <section id="introduction" data-aos="fade-up">
+    <img src="introimage.jpg" alt="Artist Photo"> <!-- Replace with your image -->
+    <h2>About Me</h2>
+    <p>
+      I am a Bangladeshi visual artist whose work explores sustainability, memory, and architectural storytelling. With over 13 years 
+      of experience, I focus on transforming waste, particularly plastic and textile remnants, into large-scale artworks that address 
+      environmental degradation and social inequity. 
+      <br><br>
+      Growing up in a country where art is often considered a luxury, I began using inexpensive, accessible materials so that art 
+      could belong to everyone. A pivotal moment occurred during a visit to a friend's home in Dhaka, where I witnessed overwhelming 
+      plastic pollution. The lives, stories, and surroundings of waste workers inspired me to collect discarded materials and create 
+      works that honor their resilience and highlight ecological crisis.
+      <br><br>
+      My first large-scale recycled work (25x13 feet) was displayed at the Smart Children’s Carnival, introducing youth to the dangers 
+      of plastic waste. I later collaborated with American artist Bhasha Chakrabarti on a textile installation that inspired my own 
+      upcycled fabric piece Moharongo.
+    </p>
+  </section>
+
+  <!-- Artworks Section -->
+  <section id="artworks" data-aos="fade-up">
+    <h2>My Work</h2>
+
+    <div class="artwork-gallery">
+      <!-- Artwork 1 -->
+      <div class="artwork">
+        <img src="aarong1.jpg" alt="MaharaArongo-The Great Arena 1">
+        <div class="artwork-description">
+          <h4>MaharaArongo-The Great Arena 1</h4>
+          <p>Size: 44ft x 10ft | Medium: Upcycle Textile, Beads, Threads | Year: 2024</p>
+        </div>
+      </div>
+
+      <!-- Artwork 2 -->
+      <div class="artwork">
+        <img src="aarong2.JPG" alt="MaharaArongo-The Great Arena 2">
+        <div class="artwork-description">
+          <h4>MaharaArongo-The Great Arena 2</h4>
+          <p>Size: 44ft x 10ft | Medium: Upcycle Textile, Beads, Threads | Year: 2024</p>
+        </div>
+      </div>
+
+      <!-- Artwork 3 -->
+      <div class="artwork">
+        <img src="aarong3.jpg" alt="MaharaArongo-The Great Arena 2">
+        <div class="artwork-description">
+          <h4>MaharaArongo-The Great Arena 2</h4>
+          <p>Size: 44ft x 10ft | Medium: Upcycle Textile, Beads, Threads | Year: 2024</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- Additional Artwork Rows -->
+    <div class="artwork-gallery">
+      <div class="artwork">
+        <img src="upcycled.jpg" alt="Upcycled Plastic Mural">
+        <div class="artwork-description">
+          <h4>Upcycled Plastic Mural</h4>
+          <p>Ocean’s Cry | Size: 25'x13' | Year: 2023</p>
+        </div>
+      </div>
+
+      <div class="artwork">
+        <img src="Dream Of a Winged Heart.jpeg" alt="Dream Of a Winged Heart">
+        <div class="artwork-description">
+          <h4>Dream Of a Winged Heart</h4>
+          <p>Size: 24"x30" | Medium: Acrylic Paint | Year: 2025</p>
+        </div>
+      </div>
+
+      <div class="artwork">
+        <img src="SILENT FACADE5.jpg" alt="SILENT FACADE">
+        <div class="artwork-description">
+          <h4>SILENT FACADE</h4>
+          <p>Size: 10"x12" | Medium: Cement and Acrylic Paint | Year: 2025</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="artwork-gallery">
+      <div class="artwork">
+        <img src="SILENT FACADE4.jpg" alt="SILENT FACADE">
+        <div class="artwork-description">
+          <h4>SILENT FACADE</h4>
+          <p>Size: 10"x14" | Medium: Clay, Soil, Resin, Acrylic Paint | Year: 2025</p>
+        </div>
+      </div>
+
+      <div class="artwork">
+        <img src="SILENT FACADE.jpeg" alt="SILENT FACADE">
+        <div class="artwork-description">
+          <h4>SILENT FACADE</h4>
+          <p>Size: 16"x20" | Medium: Waste Carton, Plastic Bags, Acrylic Paint | Year: 2025</p>
+        </div>
+      </div>
+
+      <div class="artwork">
+        <img src="SILENT FACADE2.jpg" alt="SILENT FACADE">
+        <div class="artwork-description">
+          <h4>SILENT FACADE</h4>
+          <p>Size: 10"x12" | Medium: Cement and Acrylic Paint | Year: 2025</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="artwork-gallery">
+      <div class="artwork">
+        <img src="SILENT FACADE3.jpg" alt="SILENT FACADE">
+        <div class="artwork-description">
+          <h4>SILENT FACADE</h4>
+          <p>Size: 10"x14" | Medium: Waste Carton, Plastic Bags, Acrylic Paint | Year: 2025</p>
+        </div>
+      </div>
+
+      <div class="artwork">
+        <img src="pigeons water color.jpg" alt="Water Color">
+        <div class="artwork-description">
+          <h4>Water Color</h4>
+          <p></p>
+        </div>
+      </div>
+
+      <div class="artwork">
+        <img src="artsee.jpg" alt="Exhibitions">
+        <div class="artwork-description">
+          <h4>Exhibitions</h4>
+          <p></p>
+        </div>
+      </div>
+    </div>
+
+    <div class="artwork-gallery">
+      <div class="artwork">
+        <img src="exhibition shilpokola.jpg" alt="Exhibition">
+        <div class="artwork-description">
+          <h4>Exhibitions</h4>
+          <p></p>
+        </div>
+      </div>
+
+      <div class="artwork">
+        <img src="Folk Art.jpg" alt="Folk Art">
+        <div class="artwork-description">
+          <h4>Folk Art - Nayori</h4>
+          <p>Size: 24"x30" | Medium: Acrylic Paint | Year: 2019</p>
+        </div>
+      </div>
+
+      <div class="artwork">
+        <img src="Abstract Paint.jpg" alt="Abstract Paint">
+        <div class="artwork-description">
+          <h4>Abstract Paint</h4>
+          <p>Medium: Plastic Paint and Wall Putty | Size: 6x9 feet | Year: 2019</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="artwork-gallery">
+      <div class="artwork">
+        <img src="Interior Design 2.jpeg" alt="Interior Design">
+        <div class="artwork-description">
+          <h4>Interior Design</h4>
+          <p></p>
+        </div>
+      </div>
+
+      <div class="artwork">
+        <img src="interior design 3.jpeg" alt="Interior Design">
+        <div class="artwork-description">
+          <h4>Interior Design</h4>
+          <p></p>
+        </div>
+      </div>
+
+      <div class="artwork">
+        <img src="Mural Art.jpeg" alt="Mural Art">
+        <div class="artwork-description">
+          <h4>Mural Art</h4>
+          <p>This work is for Bangladesh’s first Nano Satellite BRAC Onnesha’s Research Centre (2022).</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="artwork-gallery">
+      <div class="artwork">
+        <img src="calligraphy blue.jpeg" alt="Calligraphy">
+        <div class="artwork-description">
+          <h4>Calligraphy</h4>
+          <p></p>
+        </div>
+      </div>
+
+      <div class="artwork">
+        <img src="dutch calligraphy.jpg" alt="Calligraphy">
+        <div class="artwork-description">
+          <h4>Calligraphy</h4>
+          <p></p>
+        </div>
+      </div>
+
+      <div class="artwork">
+        <img src="undefined art.jpg" alt="Rickshaw Painting">
+        <div class="artwork-description">
+          <h4>Rickshaw Painting</h4>
+          <p></p>
+        </div>
+      </div>
+    </div>
+
+    <div class="artwork-gallery">
+      <div class="artwork">
+        <img src="bag 2.jpg" alt="Leather Bags">
+        <div class="artwork-description">
+          <h4>Leather Bags</h4>
+          <p></p>
+        </div>
+      </div>
+    </div>
+
+  </section>
+
+  <!-- Contact Section -->
+  <section id="contact" data-aos="fade-up">
+    <h3>Thank You For Your Precious Visit</h3>
+    <h2>Contact Me</h2>
+    <p>If you'd like to discuss my work or collaborate, feel free to reach out:</p>
+    <p>Email: <a href="mailto:rifananzibaus@gmail.com">rifananzibaus@gmail.com</a></p>
+    <p>Phone: 7013143628</p>
+    <p>YouTube: <a href="https://youtube.com/@artistapu?si=0evrt4CLLCfHDoij">https://youtube.com/@artistapu</a></p>
+  </section>
+
+  <!-- Footer -->
+  <footer>
+    <p>&copy; 2025 Rifa Nanziba - Visual Artist | All Rights Reserved</p>
+  </footer>
+
+  <!-- AOS Initialization -->
+  <script src="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.js"></script>
+  <script>
+    // Initialize AOS
+    AOS.init({
+      duration: 1000,
+      easing: 'ease-in-out',
+      once: true,
+    });
+  </script>
+
+  <!-- Scroll Down Popup Button -->
+  <div id="scroll-down-popup" title="Scroll Down to My Work">
+    <span></span>
+  </div>
+</body>
+</html>
