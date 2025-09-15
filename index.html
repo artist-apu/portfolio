@@ -9,7 +9,7 @@
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
   
   <!-- AOS (Animate On Scroll) CSS for animations -->
-  <link href="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.css" rel="stylesheet">
+  <link href="https://cdn.jsdelivr.net/npm/aos@3.3.4/dist/aos.css" rel="stylesheet">
 
   <!-- Custom CSS for Portfolio -->
   <style>
@@ -135,8 +135,8 @@
     }
 
     .artwork {
-      width: 400px; /* Increased image size */
-      height: 400px; /* Increased image size */
+      width: 400px; /* Adjust as needed */
+      height: 400px; /* Adjust as needed */
       background-color: #f4f4f4;
       border-radius: 10px;
       margin-bottom: 30px;
@@ -149,9 +149,9 @@
     }
 
     .artwork img {
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
+      width: 100%; /* Ensures the image takes up the full width */
+      height: 100%; /* Ensures the image takes up the full height */
+      object-fit: contain; /* Ensures the full image fits within the container */
       border-radius: 8px;
       transition: opacity 0.3s ease;
     }
@@ -344,17 +344,15 @@
       </div>
 
       <!-- Artwork 3 -->
-      <div class="artwork">
+       <div class="artwork">
         <img src="aarong3.jpg" alt="MaharaArongo-The Great Arena 2">
         <div class="artwork-description">
           <h4>MaharaArongo-The Great Arena 2</h4>
           <p>Size: 44ft x 10ft | Medium: Upcycle Textile, Beads, Threads | Year: 2024</p>
         </div>
-      </div>
-    </div>
-
-    <!-- Additional Artwork Rows -->
-    <div class="artwork-gallery">
+     </div>
+    
+ <div class="artwork-gallery">
       <div class="artwork">
         <img src="upcycled.jpg" alt="Upcycled Plastic Mural">
         <div class="artwork-description">
@@ -519,6 +517,11 @@
         </div>
       </div>
     </div>
+
+
+
+
+    <!-- Additional Artwork Rows (up to 12) can follow in a similar structure -->
 
   </section>
 
